@@ -1,0 +1,66 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Main Styles */
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: bold;
+    color: #FF206E;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+}
+.header {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: #001514;
+    font-size: 2rem;
+}
+.header2 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: #FF206E;
+    font-size: 2rem;
+}
+.body {
+    font-family: 'Roboto', sans-serif;
+    color: #001514
+}
+.link {
+    font-family: 'Railway', sans-serif;
+    font-weight: bold;
+    color: #001514;
+    font-size: 1.5rem;
+}
+
+
+/* Loading animation */
+
+@keyframes dotPulse {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .dot {
+    animation: dotPulse 0.5s infinite ease-in-out;
+    background-color: #FF206E;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin: 0 3px;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
