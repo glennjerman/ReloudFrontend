@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 import { useNavigate } from "react-router-dom";
 
 export function signup(email, password) {
-  return fetch("http://192.168.86.77:8000/api/user/signup/", {
+  return fetch("https://192.168.86.77:/api/user/signup/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export function signup(email, password) {
 }
 
 export async function login(email, password) {
-  return fetch("http://192.168.86.77:8000/api/session/", {
+  return fetch("https://192.168.86.77:/api/session/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export async function login(email, password) {
 }
 
 export function logout() {
-  return fetch("http://192.168.86.77:8000/api/session/", {
+  return fetch("https://192.168.86.77:/api/session/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export function CheckSession(WrappedComponent) {
     const [isValidSession, setIsValidSession] = useState(false);
 
     useEffect(() => {
-      fetch("http://192.168.86.77:8000/api/session/", {
+      fetch("https://192.168.86.77:/api/session/", {
         method: "GET",
         headers: {
           Authorization: "Token " + Cookie.get("token"),
