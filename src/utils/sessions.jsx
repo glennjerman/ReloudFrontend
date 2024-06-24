@@ -1,35 +1,38 @@
-import axios from 'axios';
-import https from 'https';
 import Cookie from "js-cookie";
 import React, { useState, useEffect } from "react";
 import Login from "../pages/Login";
 import { useNavigate } from "react-router-dom";
 
-const agent = new https.Agent({  
-  rejectUnauthorized: false
-});
 
 export function signup(email, password) {
-  return axios.post("https://192.168.86.77:/api/user/signup/", { email, password }, {
+  return fetch("https://107.3.97.19/api/user/signup/", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    httpsAgent: agent
+    body: JSON.stringify({ email, password }),
   });
 }
 
 export async function login(email, password) {
-  return axios.post("https://192.168.86.77:/api/session/", { email, password }, {
+  return fetch("https://107.3.97.19/api/session/", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    httpsAgent: agent
+    body: JSON.stringify({ email, password }),
   })
     .then((response) => {
-      if (!response.data.token) {
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+      return response.json(); // Make sure to return this Promise
+    })
+    .then((data) => {
+      if (!data.token) {
         return false;
       }
-      return response.data;
+      return data;
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -37,22 +40,27 @@ export async function login(email, password) {
 }
 
 export function logout() {
-  return axios.delete("https://192.168.86.77:/api/session/", {
+  return fetch("https://107.3.97.19/api/session/", {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Token ${Cookie.get("token")}`,
     },
-    httpsAgent: agent
   })
     .then((response) => {
-      if (response.data.message === "Token deleted") {
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.message === "Token deleted") {
         Cookie.remove("token");
         return true;
       }
       return false;
     });
 }
-
 export function CheckSession(WrappedComponent) {
   return function WithCheckSession(props) {
     const navigate = useNavigate();
@@ -61,15 +69,16 @@ export function CheckSession(WrappedComponent) {
     const [isValidSession, setIsValidSession] = useState(false);
 
     useEffect(() => {
-      axios.get("https://192.168.86.77:/api/session/", {
+      fetch("https://107.3.97.19/api/session/", {
+        method: "GET",
         headers: {
           Authorization: "Token " + Cookie.get("token"),
         },
-        httpsAgent: agent
       })
-        .then((response) => {
+        .then((response) => response.json())
+        .then((data) => {
           setIsLoading(false);
-          if (response.data.message) {
+          if (data.message) {
             setIsValidSession(true);
           } else {
             setIsValidSession(false);
@@ -101,3 +110,4 @@ export function CheckSession(WrappedComponent) {
     }
   };
 }
+

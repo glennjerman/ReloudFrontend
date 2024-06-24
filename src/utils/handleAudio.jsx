@@ -1,97 +1,100 @@
-import axios from 'axios';
-import https from 'https';
 import Cookie from "js-cookie";
 
-const agent = new https.Agent({  
-  rejectUnauthorized: false
-});
-
 export function addAudio(url) {
-    return axios.post("https://192.168.86.77/api/convert/", { url: url }, {
+    return fetch("https://107.3.97.19/api/convert/", {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
-    });
+        body: JSON.stringify({ url: url }),
+    })
 }
 
 export function listAudio() {
-    return axios.get("https://192.168.86.77/api/user/audios/", {
+    return fetch("https://107.3.97.19/api/user/audios/", {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
     })
-    .then((response) => {
-        if (response.data.error) {
-            throw new Error("List audio failed");
-        }
-        return response.data;
-    });
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.error) {
+                throw new Error("List audio failed");
+            }
+            return response;
+        });
 }
 
 export function getAudio(id) {
-    return axios.get(`https://192.168.86.77/api/audio/${id}/`, {
+    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
     })
-    .then((response) => {
-        if (response.data.error) {
-            throw new Error("Get audio failed");
-        }
-        return response.data;
-    });
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.error) {
+                throw new Error("Get audio failed");
+            }
+            return response;
+        });
 }
 
 export function editAudio(id, name, image) {
-    return axios.patch(`https://192.168.86.77/api/audio/${id}/`, { name: name, image: image }, {
+    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
+        body: JSON.stringify({ name: name, image: image }),
     })
-    .then((response) => {
-        if (response.data.error) {
-            throw new Error("Edit audio failed");
-        }
-        return response.data;
-    });
-}
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.error) {
+                throw new Error("Edit audio failed");
+            }
+            return response;
+        });
+
+    }
 
 export function deleteAudio(id) {
-    return axios.delete(`https://192.168.86.77/api/audio/${id}/`, {
+    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
     })
-    .then((response) => {
-        if (response.data.error) {
-            throw new Error("Delete audio failed");
-        }
-        return response.data;
-    });
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.error) {
+                throw new Error("Delete audio failed");
+            }
+            return response;
+        });
 }
 
 export function getAudioByName(name) {
-    return axios.get(`https://192.168.86.77/api/audio/${name}/`, {
+    return fetch(`https://107.3.97.19/api/audio/${name}/`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${Cookie.get("token")}`,
         },
-        httpsAgent: agent
     })
-    .then((response) => {
-        if (response.data.error) {
-            throw new Error("Get audio by name failed");
-        }
-        return response.data;
-    });
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.error) {
+                throw new Error("Get audio by name failed");
+            }
+            return response;
+        });
 }
+    
