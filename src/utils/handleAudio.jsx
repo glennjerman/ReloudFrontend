@@ -1,7 +1,7 @@
 import Cookie from "js-cookie";
 
 export function addAudio(url) {
-    return fetch("https://107.3.97.19/api/convert/", {
+    return fetch("https://api.reloud.xyz/api/convert/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export function addAudio(url) {
 }
 
 export function listAudio() {
-    return fetch("https://107.3.97.19/api/user/audios/", {
+    return fetch("https://api.reloud.xyz/api/user/audios/", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export function listAudio() {
 }
 
 export function getAudio(id) {
-    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+    return fetch(`https://api.reloud.xyz/api/audio/${id}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export function getAudio(id) {
 }
 
 export function editAudio(id, name, image) {
-    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+    return fetch(`https://api.reloud.xyz/api/audio/${id}/`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export function editAudio(id, name, image) {
     }
 
 export function deleteAudio(id) {
-    return fetch(`https://107.3.97.19/api/audio/${id}/`, {
+    return fetch(`https://api.reloud.xyz/api/audio/${id}/`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export function deleteAudio(id) {
 }
 
 export function getAudioByName(name) {
-    return fetch(`https://107.3.97.19/api/audio/${name}/`, {
+    return fetch(`https://api.reloud.xyz/api/audio/${name}/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

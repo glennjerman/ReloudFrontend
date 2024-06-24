@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export function signup(email, password) {
-  return fetch("https://107.3.97.19/api/user/signup/", {
+  return fetch("https://api.reloud.xyz/api/user/signup/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export function signup(email, password) {
 }
 
 export async function login(email, password) {
-  return fetch("https://107.3.97.19/api/session/", {
+  return fetch("https://api.reloud.xyz/api/session/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export async function login(email, password) {
 }
 
 export function logout() {
-  return fetch("https://107.3.97.19/api/session/", {
+  return fetch("https://api.reloud.xyz/api/session/", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export function CheckSession(WrappedComponent) {
     const [isValidSession, setIsValidSession] = useState(false);
 
     useEffect(() => {
-      fetch("https://107.3.97.19/api/session/", {
+      fetch("https://api.reloud.xyz/api/session/", {
         method: "GET",
         headers: {
           Authorization: "Token " + Cookie.get("token"),
