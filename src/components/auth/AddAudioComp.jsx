@@ -8,7 +8,7 @@ function AddAudioComp(props) {
   const [error, setError] = useState("");
   const urlRef = useRef();
   const youtubeVideoUrlRegex =
-    /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
+    /^(https?:\/\/)?(www\.|m\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
   function handleSubmit(e) {
     e.preventDefault();
     const url = urlRef.current.value;
