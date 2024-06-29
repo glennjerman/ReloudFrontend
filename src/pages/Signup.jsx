@@ -51,7 +51,7 @@ function Signup() {
         <div className="flex flex-col items-center justify-center h-4/5 w-full">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center w-3/4 h-3/4 bg-lightShade p-5 rounded-lg shadow-lg"
+            className="flex flex-col items-center w-3/4 h-full bg-lightShade p-5 rounded-lg shadow-lg"
           >
             <h2 className="header w-full text-center text-darkShade mb-5">
               Register
@@ -78,7 +78,7 @@ function Signup() {
             />
             <p className="text-red-500 text-sm text-center pb-2">{error}</p>
             <p
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/login")}
               className="text-center text-blue-500 font-bold text-sm pb-2 underline cursor-pointer font-sans"
             >
               Login

@@ -45,7 +45,7 @@ function Login() {
         <div className="flex flex-col items-center justify-center h-4/5 w-full mt-10">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center w-3/4 h-5/6 bg-lightShade p-5 rounded-lg shadow-lg"
+            className="flex flex-col items-center w-3/4 h-full bg-lightShade p-5 rounded-lg shadow-lg"
           >
             <h2 className="header w-full text-center text-darkShade mb-5">
               Login

@@ -64,3 +64,29 @@
   .dot:nth-child(3) {
     animation-delay: 0.4s;
   }
+
+.audio-progress {
+    /* Change the height of the progress bar */
+    height: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* Change the color of the progress bar */
+    color: #FF206E;
+
+    /* Remove the default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Change the color of the progress bar in Chrome, Firefox, and Safari */
+.audio-progress::-webkit-progress-bar {
+    background-color: #001514;
+}
+
+.audio-progress::-webkit-progress-value {
+    background-color: #FF206E;
+}
+
+.audio-progress::-moz-progress-bar {
+    background-color: #FF206E;
+}

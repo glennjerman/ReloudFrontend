@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { listAudio } from './handleAudio';
 
 const AudioContext = createContext();
 
@@ -28,6 +29,23 @@ export function AudioProvider({ children }) {
     };
   }, [audio]);
 
+  useEffect(() => {
+    if (currentTime >= duration - 0.5) {
+      listAudio()
+        .then((response) => {
+          response.reverse().forEach((audio, index) => {
+            if (audio.audio === src) {
+              if (index === response.length - 1) {
+                startPlaying(response[0].audio);
+              } else {
+                startPlaying(response[index + 1].audio);
+            }
+          }
+          });
+        })
+    }
+  }, [currentTime]);
+
 const startPlaying = (newSrc) => {
   if (newSrc) {
     // If a new source is provided, set it on the audio element and start playing
@@ -40,6 +58,7 @@ const startPlaying = (newSrc) => {
   }
   // If a new source is not provided, but the audio element already has a source, resume playing
   audio.play();
+  console.log(audio, src)
 };
 
   const stopPlaying = () => {
