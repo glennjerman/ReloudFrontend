@@ -46,6 +46,11 @@ export function AudioProvider({ children }) {
     }
   }, [currentTime]);
 
+const setTime = (time) => {
+  setCurrentTime(time);
+  audio.currentTime = time;
+}
+
 const startPlaying = (newSrc) => {
   if (newSrc) {
     // If a new source is provided, set it on the audio element and start playing
@@ -67,7 +72,7 @@ const startPlaying = (newSrc) => {
   };
 
   return (
-    <AudioContext.Provider value={{ isPlaying, startPlaying, stopPlaying, src, duration, currentTime }}>
+    <AudioContext.Provider value={{ isPlaying, startPlaying, stopPlaying, src, duration, currentTime, setTime}}>
       {children}
     </AudioContext.Provider>
   );
